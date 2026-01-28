@@ -93,14 +93,42 @@ function Stat({ label, value, sub, dark = false }) {
   );
 }
 
-function PartnerMarquee() {
+function PartnerMarquee({ tone = "clean" }) {
+  const fades = {
+    light: {
+      left: "bg-gradient-to-r from-[#F5F2EA] via-[#F5F2EA]/40 to-transparent",
+      right: "bg-gradient-to-l from-[#F5F2EA] via-[#F5F2EA]/40 to-transparent",
+    },
+    dark: {
+      left: "bg-gradient-to-r from-stone-950 via-stone-950/40 to-transparent",
+      right: "bg-gradient-to-l from-stone-950 via-stone-950/40 to-transparent",
+    },
+    clean: {
+      left: "bg-gradient-to-r from-transparent via-transparent to-transparent",
+      right: "bg-gradient-to-l from-transparent via-transparent to-transparent",
+    },
+  };
+
+  const chip = {
+    light: "border-stone-900/10 bg-white/70 text-stone-900",
+    dark: "border-white/10 bg-white/5 text-white",
+    clean: "border-stone-900/10 bg-white text-stone-900",
+  };
+
   return (
-    <div className="group relative w-full overflow-hidden py-8">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-32 bg-gradient-to-r from-[#F5F2EA] via-[#F5F2EA]/40 to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-32 bg-gradient-to-l from-[#F5F2EA] via-[#F5F2EA]/40 to-transparent" />
+    <div className="group relative w-full overflow-hidden py-6">
+      <div className={cx("pointer-events-none absolute inset-y-0 left-0 z-10 w-24", fades[tone].left)} />
+      <div className={cx("pointer-events-none absolute inset-y-0 right-0 z-10 w-24", fades[tone].right)} />
       <div className="flex w-max animate-marquee whitespace-nowrap">
         {[...PARTNERS, ...PARTNERS, ...PARTNERS].map((name, idx) => (
-          <div key={`${name}-${idx}`} className="flex items-center px-14 text-sm md:text-base font-black tracking-[0.4em] text-stone-950 uppercase transition-colors duration-500 hover:text-emerald-700">{name}</div>
+          <div key={`${name}-${idx}`} className="px-3">
+            <div className={cx(
+              "inline-flex items-center rounded-full border-2 px-8 py-3 text-xs md:text-sm font-black tracking-[0.35em] uppercase shadow-lg transition-all duration-500 hover:-translate-y-0.5",
+              chip[tone]
+            )}>
+              {name}
+            </div>
+          </div>
         ))}
       </div>
       <style>{`@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-33.33%); } } .animate-marquee { animation: marquee 25s linear infinite; }`}</style>
@@ -320,15 +348,6 @@ function Home() {
           ].map((x) => (<Stat key={x.l} dark label={x.l} value={x.v} sub={x.s} />))}
         </div>
       </section>
-
-      <section className="rounded-[3rem] border-2 border-stone-900/10 bg-white/70 backdrop-blur overflow-hidden shadow-2xl pt-14 pb-10 text-left">
-        <div className="px-14">
-          <div className="text-base font-black tracking-[0.4em] text-emerald-700 uppercase mb-8 leading-none text-left">TRUSTED BY INDUSTRY LEADERS</div>
-        </div>
-        <div className="mt-2">
-          <PartnerMarquee />
-        </div>
-      </section>
     </div>
   );
 }
@@ -369,6 +388,16 @@ function System() {
     <div className="space-y-12">
       <section className="rounded-[3rem] border-2 border-stone-900/10 bg-white/80 backdrop-blur-xl p-12 md:p-16 shadow-2xl text-left">
         <SectionHead eyebrow="SYSTEM" title="The System" desc="Four conversion pillars working as one system." right={<Button href="#/get-started" variant="primary">GET STARTED</Button>} />
+      </section>
+
+      <section className="text-left">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 px-2">
+          <div className="text-sm md:text-base font-black tracking-[0.35em] text-emerald-700 uppercase leading-none">TRUSTED BY INDUSTRY LEADERS</div>
+          <div className="text-xs md:text-sm font-black tracking-[0.25em] text-stone-600 uppercase">Proof Layer</div>
+        </div>
+        <div className="mt-4 -mx-6">
+          <PartnerMarquee tone="clean" />
+        </div>
       </section>
 
       <div className="grid gap-8 text-left">
