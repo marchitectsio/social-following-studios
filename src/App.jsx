@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
+import logo from "./assets/SFSF.png";
 
 const NAV = [
   { label: "Home", href: "#/" },
@@ -28,10 +29,10 @@ function useHashRoute() {
   return route;
 }
 
-function Logo({ className }) {
+function LogoPlaceholder({ className }) {
   return (
     <img 
-      src="/assets/SFSF.png" 
+      src={logo} 
       alt="Social Following Studios" 
       className={cx("object-contain", className)}
     />
@@ -283,17 +284,11 @@ function Background() {
   );
 }
 
-function Input({ label, placeholder, type = "text", value, onChange }) {
+function Input({ label, placeholder, type = "text" }) {
   return (
     <label className="block text-left">
       <div className="text-sm font-black tracking-widest text-stone-500 uppercase mb-3">{label}</div>
-      <input 
-        type={type} 
-        placeholder={placeholder} 
-        value={value}
-        onChange={onChange}
-        className="w-full rounded-[1.25rem] border-2 border-stone-900/10 bg-white px-6 py-5 text-lg font-bold focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all shadow-inner placeholder:text-stone-300" 
-      />
+      <input type={type} placeholder={placeholder} className="w-full rounded-[1.25rem] border-2 border-stone-900/10 bg-white px-6 py-5 text-lg font-bold focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all shadow-inner placeholder:text-stone-300" />
     </label>
   );
 }
@@ -488,7 +483,11 @@ function Shell({ route, children }) {
       <header className="sticky top-0 z-50 border-b-2 border-stone-900/10 bg-[#F5F2EA]/85 backdrop-blur-2xl shadow-sm text-left">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 text-left">
           <a href="#/" className="flex items-center gap-4 group">
-            <Logo className="h-12 md:h-16 w-auto" />
+            <LogoPlaceholder className="h-10 w-10 md:h-14 md:w-14 shadow-2xl" />
+            <div className="leading-none text-left">
+              <div className="text-lg md:text-xl font-black tracking-tighter text-left">Social Following Studios</div>
+              <div className="text-sm md:text-base font-black tracking-[0.2em] text-emerald-700 mt-1 uppercase text-left">Unified Conversion Systems</div>
+            </div>
           </a>
 
           <nav className="hidden md:flex items-center gap-1 text-left">
@@ -524,7 +523,11 @@ function Shell({ route, children }) {
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10 text-left">
             <div className="flex items-center gap-4 text-left">
-              <Logo className="h-12 w-auto opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+              <LogoPlaceholder className="h-12 w-12 border-stone-900/20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+              <div className="text-left">
+                <div className="text-xl font-black tracking-tighter text-left">Social Following Studios</div>
+                <div className="text-sm md:text-base font-black tracking-[0.2em] text-emerald-700 uppercase mt-1 text-left">Unified Conversion Systems</div>
+              </div>
             </div>
             <div className="flex items-center gap-10 text-sm font-black tracking-widest text-stone-500 uppercase">
               <a href="#" className="hover:text-stone-950 transition-colors">Terms</a>
