@@ -28,11 +28,13 @@ function useHashRoute() {
   return route;
 }
 
-function LogoPlaceholder({ className }) {
+function Logo({ className }) {
   return (
-    <div className={cx("flex items-center justify-center bg-stone-950 border border-emerald-500/30 rounded-[1.25rem] shadow-2xl overflow-hidden", className)}>
-      <span className="text-sm font-black tracking-[0.3em] text-emerald-500 pl-[0.3em]">SFS</span>
-    </div>
+    <img 
+      src="/assets/SFSF.png" 
+      alt="Social Following Studios" 
+      className={cx("object-contain", className)}
+    />
   );
 }
 
@@ -486,11 +488,7 @@ function Shell({ route, children }) {
       <header className="sticky top-0 z-50 border-b-2 border-stone-900/10 bg-[#F5F2EA]/85 backdrop-blur-2xl shadow-sm text-left">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 text-left">
           <a href="#/" className="flex items-center gap-4 group">
-            <LogoPlaceholder className="h-10 w-10 md:h-14 md:w-14 shadow-2xl" />
-            <div className="leading-none text-left">
-              <div className="text-lg md:text-xl font-black tracking-tighter text-left">Social Following Studios</div>
-              <div className="text-sm md:text-base font-black tracking-[0.2em] text-emerald-700 mt-1 uppercase text-left">Unified Conversion Systems</div>
-            </div>
+            <Logo className="h-12 md:h-16 w-auto" />
           </a>
 
           <nav className="hidden md:flex items-center gap-1 text-left">
@@ -526,11 +524,7 @@ function Shell({ route, children }) {
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10 text-left">
             <div className="flex items-center gap-4 text-left">
-              <LogoPlaceholder className="h-12 w-12 border-stone-900/20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
-              <div className="text-left">
-                <div className="text-xl font-black tracking-tighter text-left">Social Following Studios</div>
-                <div className="text-sm md:text-base font-black tracking-[0.2em] text-emerald-700 uppercase mt-1 text-left">Unified Conversion Systems</div>
-              </div>
+              <Logo className="h-12 w-auto opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
             </div>
             <div className="flex items-center gap-10 text-sm font-black tracking-widest text-stone-500 uppercase">
               <a href="#" className="hover:text-stone-950 transition-colors">Terms</a>
