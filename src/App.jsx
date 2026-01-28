@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
-import logo from "./assets/SFSF.png";
 
 const NAV = [
   { label: "Home", href: "#/" },
@@ -31,11 +30,9 @@ function useHashRoute() {
 
 function LogoPlaceholder({ className }) {
   return (
-    <img 
-      src={logo} 
-      alt="Social Following Studios" 
-      className={cx("object-contain", className)}
-    />
+    <div className={cx("flex items-center justify-center bg-stone-950 border border-emerald-500/30 rounded-[1.25rem] shadow-2xl overflow-hidden", className)}>
+      <span className="text-sm font-black tracking-[0.3em] text-emerald-500 pl-[0.3em]">SFS</span>
+    </div>
   );
 }
 
@@ -284,11 +281,17 @@ function Background() {
   );
 }
 
-function Input({ label, placeholder, type = "text" }) {
+function Input({ label, placeholder, type = "text", value, onChange }) {
   return (
     <label className="block text-left">
       <div className="text-sm font-black tracking-widest text-stone-500 uppercase mb-3">{label}</div>
-      <input type={type} placeholder={placeholder} className="w-full rounded-[1.25rem] border-2 border-stone-900/10 bg-white px-6 py-5 text-lg font-bold focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all shadow-inner placeholder:text-stone-300" />
+      <input 
+        type={type} 
+        placeholder={placeholder} 
+        value={value}
+        onChange={onChange}
+        className="w-full rounded-[1.25rem] border-2 border-stone-900/10 bg-white px-6 py-5 text-lg font-bold focus:outline-none focus:ring-4 focus:ring-emerald-600/10 focus:border-emerald-600 transition-all shadow-inner placeholder:text-stone-300" 
+      />
     </label>
   );
 }
